@@ -2,11 +2,11 @@ import React, { Fragment, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
-import { createUser } from '../general-utils';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import Warning from '../layout/Warning';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -26,15 +26,7 @@ const Register = ({ setAlert }) => {
             setAlert('Please enter correct password', 'danger')
         }
         else {
-            const newUser = {
-                name,
-                email,
-                password
-            }
-            const response = await createUser(newUser);
-            if (response) {
-                alert('User created successfully');
-            }
+            register({ name, email, password });
         }
     }
 
@@ -93,6 +85,7 @@ const Register = ({ setAlert }) => {
 
 Register.propTypes = {
     setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
 }
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);

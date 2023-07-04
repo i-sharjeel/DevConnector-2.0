@@ -1,20 +1,7 @@
 import axios from 'axios'
-
-export async function createUser(data) {
-    if (data) {
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            const body = JSON.stringify(data);
-            const res = await axios.post('/api/users', body, config);
-            return res.data;
-
-        } catch (error) {
-            console.error(error);
-        }
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
     }
 }
 
@@ -26,4 +13,40 @@ export function getRandomString(length) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
+}
+
+export async function createUser(body) {
+    try {
+        const res = await axios.post('/api/users', body, config);
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    }
+
+    catch (e) {
+        const errors = e.response.data.errors;
+        if (errors) {
+            return { output: errors, type: "error" };
+        }
+    }
+}
+
+export async function setAuthToken(token) {
+    if (token) {
+        axios.defaults.headers.common['x-auth-token'] = token;
+    }
+    else {
+        delete axios.defaults.headers.common['x-auth-token'];
+    }
+}
+
+export async function authenticateUser() {
+    try {
+        const res = await axios.get('/api/auth')
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
 }
