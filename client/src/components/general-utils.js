@@ -31,9 +31,26 @@ export async function createUser(body) {
     }
 }
 
+export async function loginUser(body) {
+    try {
+        const res = await axios.post('/api/auth', body, config);
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    }
+
+    catch (e) {
+        const errors = e.response.data.errors;
+        if (errors) {
+            return { output: errors, type: "error" };
+        }
+    }
+}
+
 export async function setAuthToken(token) {
     if (token) {
         axios.defaults.headers.common['x-auth-token'] = token;
+        console.log("token: ", token)
     }
     else {
         delete axios.defaults.headers.common['x-auth-token'];
