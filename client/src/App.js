@@ -3,7 +3,7 @@ import { loadUser } from './actions/auth';
 import { setAuthToken } from './components/general-utils';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import { Landing } from './components/layout/Landing';
+import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
