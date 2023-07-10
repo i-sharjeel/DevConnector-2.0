@@ -6,6 +6,8 @@ import Navbar from './components/layout/Navbar';
 import { Landing } from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
 import { Provider } from 'react-redux'
 import store from './store';
 import './App.css';
@@ -29,6 +31,9 @@ function App() {
             <Route exact path="/" element={<Landing />} />
             <Route exact path='/Login' element={<Login />} />
             <Route exact path='/Register' element={<Register />} />
+            <Route exact path='/' element={<PrivateRoute />}>
+              <Route exact path='/Dashboard' element={<Dashboard />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </Fragment>

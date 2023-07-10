@@ -67,3 +67,14 @@ export async function authenticateUser() {
         return { output: error, type: "error" };
     }
 }
+
+export async function getUserProfile() {
+    try {
+        const res = await axios.get('/api/profile/me')
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
