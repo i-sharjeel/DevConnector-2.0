@@ -78,3 +78,14 @@ export async function getUserProfile() {
         return { output: error, type: "error" };
     }
 }
+
+export async function createUserProfile(formData) {
+    try {
+        const res = await axios.post('/api/profile', formData, config)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}

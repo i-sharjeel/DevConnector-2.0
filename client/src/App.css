@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&display=swap');
+
 /* Global Styles */
 :root {
   --primary-color: #17a2b8;
@@ -14,7 +16,7 @@
 }
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Manrope', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;

@@ -11,7 +11,6 @@ const Warning = () => {
                 <h4 className={`alert alert-${x.alertType}`} key={x.id}>{x.msg}</h4>
             </>
         }) : ""}
-        {/* </div> */}
     </>
     )
 }

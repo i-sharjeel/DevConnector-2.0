@@ -7,6 +7,7 @@ import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
+import CreateProfile from './components/profile-forms/CreateProfile';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { Provider } from 'react-redux'
 import store from './store';
@@ -33,6 +34,7 @@ function App() {
             <Route exact path='/Register' element={<Register />} />
             <Route exact path='/' element={<PrivateRoute />}>
               <Route exact path='/Dashboard' element={<Dashboard />} />
+              <Route exact path='/Create-Profile' element={<CreateProfile />} />
             </Route>
           </Routes>
         </BrowserRouter>
