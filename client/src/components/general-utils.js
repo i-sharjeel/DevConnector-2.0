@@ -111,3 +111,36 @@ export async function addUserEducation(formData) {
         return { output: error, type: "error" };
     }
 }
+
+export async function deleteUserExperience(id) {
+    try {
+        const res = await axios.delete(`/api/profile/experience/${id}`)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function deleteUserEducation(id) {
+    try {
+        const res = await axios.delete(`/api/profile/education/${id}`)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function deleteUserAccount() {
+    try {
+        const res = await axios.delete(`/api/profile`)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}

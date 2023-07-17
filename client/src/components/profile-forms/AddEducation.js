@@ -53,7 +53,7 @@ const AddEducation = ({ navigate, addEducation }) => {
                     <p><input type="checkbox" name="current" value={current} onChange={() => {
                         setFormData({ ...formData, current: !current });
                         setToDateDisabled(!toDateDisabled);
-                    }} /> Current Job</p>
+                    }} /> Current School</p>
                 </div>
                 <div className="form-group">
                     <h4>To Date</h4>
