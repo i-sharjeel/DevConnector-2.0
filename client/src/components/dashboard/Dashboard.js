@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import Warning from '../layout/Warning';
 import { connect } from 'react-redux'
 import { getCurrentProfile } from '../../actions/profile'
+import Experience from './Experience';
+import Education from './Education';
 import DashboardActions from './DashboardActions';
 import Loading from '../layout/Loading'
 
@@ -28,7 +30,9 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                     </p>
                     {profile !== null ?
                         <>
-                            <DashboardActions></DashboardActions>
+                            <DashboardActions />
+                            <Experience experience={profile.experience} />
+                            <Education education={profile.education} />
                         </>
                         : <Fragment>
                             <p>You have not yet setup a profile yet, please create a profile.</p>
