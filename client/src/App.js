@@ -6,6 +6,8 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import AddExperience from './components/profile-forms/AddExperience';
+import AddEducation from './components/profile-forms/AddEducation';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -35,6 +37,8 @@ function App() {
             <Route exact path='/' element={<PrivateRoute />}>
               <Route exact path='/Dashboard' element={<Dashboard />} />
               <Route exact path='/Create-Profile' element={<CreateProfile />} />
+              <Route exact path='/Add-Experience' element={<AddExperience />} />
+              <Route exact path='/Add-Education' element={<AddEducation />} />
             </Route>
           </Routes>
         </BrowserRouter>

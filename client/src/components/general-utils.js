@@ -89,3 +89,25 @@ export async function createUserProfile(formData) {
         return { output: error, type: "error" };
     }
 }
+
+export async function addUserExperience(formData) {
+    try {
+        const res = await axios.put('/api/profile/experience', formData, config)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function addUserEducation(formData) {
+    try {
+        const res = await axios.put('/api/profile/education', formData, config)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}

@@ -1,11 +1,12 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import withRouter from '../routing/WithRouter'
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 import PropTypes from 'prop-types'
 import Warning from '../layout/Warning'
 import { connect } from 'react-redux'
-import { createProfile } from '../../actions/profile'
+import { createProfile, getCurrentProfile } from '../../actions/profile'
 
-const CreateProfile = ({ createProfile, navigate }) => {
+const CreateProfile = ({ createProfile, getCurrentProfile, navigate }) => {
     const [formData, setFormData] = useState({
         company: "",
         website: "",
@@ -20,6 +21,8 @@ const CreateProfile = ({ createProfile, navigate }) => {
         youtube: "",
         instagram: "",
     });
+    const profileData = useSelector((state) => state?.profile?.profile);
+    const loading = useSelector((state) => state?.profile.loading);
 
     const [showSocialInputs, setShowSocialInputs] = useState(false);
 
@@ -31,8 +34,15 @@ const CreateProfile = ({ createProfile, navigate }) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        createProfile(formData, navigate, false)
+        createProfile(formData, navigate, true)
     }
+
+    useEffect(() => {
+        getCurrentProfile();
+        if (profileData) {
+            setFormData(profileData);
+        }
+    }, [loading])
 
     return (
         <Fragment>
@@ -156,6 +166,7 @@ const CreateProfile = ({ createProfile, navigate }) => {
 
 CreateProfile.propTypes = {
     createProfile: PropTypes.func.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired
 }
 
-export default connect(null, { createProfile })(withRouter(CreateProfile))
+export default connect(null, { createProfile, getCurrentProfile })(withRouter(CreateProfile))

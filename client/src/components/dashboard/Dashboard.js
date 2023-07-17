@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Warning from '../layout/Warning';
 import { connect } from 'react-redux'
 import { getCurrentProfile } from '../../actions/profile'
+import DashboardActions from './DashboardActions';
 import Loading from '../layout/Loading'
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
@@ -15,20 +16,19 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
     }, [])
 
 
-    return <>
+    return <div className='mr-4 ml-4'>
         <Warning />
         {loading && profile === null
             ? <Loading />
             : <Fragment>
-                <div className='mr-4 ml-4'>
+                <div>
                     <h1 className='large text-primary'>Dashboard</h1>
                     <p className='lead'>
                         <i className='fas fa-user'>&nbsp;&nbsp;</i>Welcome {user && user.name}
                     </p>
                     {profile !== null ?
                         <>
-                            <p>You have a profile {profile.status}</p>
-                            <button className='btn mt-1'>Edit Profile</button>
+                            <DashboardActions></DashboardActions>
                         </>
                         : <Fragment>
                             <p>You have not yet setup a profile yet, please create a profile.</p>
@@ -40,7 +40,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
                         </Fragment>}
                 </div>
             </Fragment>}
-    </>
+    </div>
 }
 
 Dashboard.propTypes = {
