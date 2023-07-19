@@ -1,5 +1,5 @@
-import { GET_PROFILE, PROFILE_ERROR, LOGIN_FAIL, UPDATE_PROFILE, CLEAR_PROFILE, DELETE_ACCOUNT } from "./types";
-import { getUserProfile, createUserProfile, addUserExperience, addUserEducation, deleteUserExperience, deleteUserEducation, deleteUserAccount } from "../components/general-utils";
+import { GET_PROFILE, PROFILE_ERROR, LOGIN_FAIL, UPDATE_PROFILE, CLEAR_PROFILE, DELETE_ACCOUNT, GET_PROFILES, GET_REPOS } from "./types";
+import { getUserProfile, createUserProfile, addUserExperience, addUserEducation, deleteUserExperience, deleteUserEducation, deleteUserAccount, getAllProfiles, getProfileByUserID, getGithubRepos } from "../components/general-utils";
 import { setAlert } from "./alert";
 
 export const getCurrentProfile = () => async dispatch => {
@@ -18,6 +18,60 @@ export const getCurrentProfile = () => async dispatch => {
     }
 }
 
+// get all profiles
+export const getProfiles = () => async dispatch => {
+    dispatch({ type: CLEAR_PROFILE });
+
+    const res = await getAllProfiles();
+    if (res && res.type === "success") {
+        dispatch({
+            type: GET_PROFILES,
+            payload: res.output
+        })
+    }
+    else if (res && res.type === "error") {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: res.output.response.statusText, status: res.output.response.status
+        })
+    }
+}
+
+// get profiles by ID
+export const getProfileByID = userID => async dispatch => {
+    const res = await getProfileByUserID(userID);
+    if (res && res.type === "success") {
+        dispatch({
+            type: GET_PROFILE,
+            payload: res.output
+        })
+    }
+    else if (res && res.type === "error") {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: res.output.response.statusText, status: res.output.response.status
+        })
+    }
+}
+
+// get profiles by ID
+export const fetchGithubRepos = username => async dispatch => {
+    const res = await getGithubRepos(username);
+    if (res && res.type === "success") {
+        dispatch({
+            type: GET_REPOS,
+            payload: res.output
+        })
+    }
+    else if (res && res.type === "error") {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: res.output.response.statusText, status: res.output.response.status
+        })
+    }
+}
+
+// create/update profile
 export const createProfile = (formData, navigate, edit) => async dispatch => {
     const res = await createUserProfile(formData);
     if (res && res.type === "success") {

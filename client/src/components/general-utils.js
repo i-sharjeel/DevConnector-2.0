@@ -79,6 +79,39 @@ export async function getUserProfile() {
     }
 }
 
+export async function getAllProfiles() {
+    try {
+        const res = await axios.get('/api/profile')
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function getProfileByUserID(id) {
+    try {
+        const res = await axios.get(`/api/profile/user/${id}`)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function getGithubRepos(username) {
+    try {
+        const res = await axios.get(`/api/profile/github/${username}`)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
 export async function createUserProfile(formData) {
     try {
         const res = await axios.post('/api/profile', formData, config)

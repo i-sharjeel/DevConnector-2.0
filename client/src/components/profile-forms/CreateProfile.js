@@ -42,7 +42,8 @@ const CreateProfile = ({ createProfile, getCurrentProfile, navigate }) => {
         if (profileData) {
             setFormData(profileData);
         }
-    }, [loading])
+        // eslint-disable-next-line
+    }, [loading, getCurrentProfile])
 
     return (
         <Fragment>

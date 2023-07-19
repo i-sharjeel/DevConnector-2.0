@@ -697,3 +697,11 @@ button {
 .mr-5 {
   margin-right: 5rem;
 }
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
+.set-display-flex {
+  display: flex;
+}

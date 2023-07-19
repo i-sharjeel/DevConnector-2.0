@@ -15,7 +15,7 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
 
     useEffect(() => {
         getCurrentProfile()
-    }, [])
+    }, [getCurrentProfile])
 
 
     return <div className='mr-4 ml-4'>
