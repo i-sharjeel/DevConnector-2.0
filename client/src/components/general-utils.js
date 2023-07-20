@@ -177,3 +177,92 @@ export async function deleteUserAccount() {
         return { output: error, type: "error" };
     }
 }
+
+export async function fetchPosts() {
+    try {
+        const res = await axios.get(`/api/posts`)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+
+export async function fetchPost(id) {
+    try {
+        const res = await axios.get(`/api/posts/${id}`)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function likePost(id) {
+    try {
+        const res = await axios.put(`/api/posts/like/${id}`);
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function unlikePost(id) {
+    try {
+        const res = await axios.put(`/api/posts/unlike/${id}`);
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function deleteOnePost(id) {
+    try {
+        const res = await axios.delete(`/api/posts/${id}`);
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function createPost(formData) {
+    try {
+        const res = await axios.post('/api/posts', formData, config)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function createComment(postID, formData) {
+    try {
+        const res = await axios.post(`/api/posts/comment/${postID}`, formData, config)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}
+
+export async function deleteComment(postID, commentID) {
+    try {
+        const res = await axios.delete(`/api/posts/comment/${postID}/${commentID}`)
+        if (res && res.data) {
+            return { output: res.data, type: "success" };
+        }
+    } catch (error) {
+        return { output: error, type: "error" };
+    }
+}

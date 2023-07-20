@@ -12,6 +12,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { Provider } from 'react-redux'
 import store from './store';
@@ -43,6 +45,8 @@ function App() {
               <Route exact path='/Create-Profile' element={<CreateProfile />} />
               <Route exact path='/Add-Experience' element={<AddExperience />} />
               <Route exact path='/Add-Education' element={<AddEducation />} />
+              <Route exact path='/Posts' element={<Posts />} />
+              <Route exact path='/Post/:id' element={<Post />} />
             </Route>
           </Routes>
         </BrowserRouter>

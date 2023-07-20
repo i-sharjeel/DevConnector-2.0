@@ -18,14 +18,14 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
     }, [getCurrentProfile])
 
 
-    return <div className='mr-4 ml-4'>
+    return <div className='mt-5 mr-4 ml-4'>
         <Warning />
         {loading && profile === null
             ? <Loading />
             : <Fragment>
                 <div>
                     <h1 className='large text-primary'>Dashboard</h1>
-                    <p className='lead'>
+                    <p className='lead mt-2'>
                         <i className='fas fa-user'>&nbsp;&nbsp;</i>Welcome {user && user.name}
                     </p>
                     {profile !== null ?
