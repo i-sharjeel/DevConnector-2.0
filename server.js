@@ -1,7 +1,8 @@
 const express = require("express");
 const connectDB = require("./config/db");
+require('dotenv').config();
+const config = require("config");
 const path = require("path");
-
 const app = express();
 
 //Connect Database
@@ -21,7 +22,10 @@ app.use("/api/posts", require("./routes/api/posts"));
 
 // Serve static assets in production
 
-if (process.env.NODE_ENV === 'production') {
+// console.log('NODE_ENV: ' + config.util.getEnv('NODE_ENV'));
+console.log('process.env.STATUS: ' + process.env.STATUS);
+
+if (process.env.STATUS == "production") {
     // set static folder
 
     console.log("I am running and env is Production")
@@ -31,6 +35,10 @@ if (process.env.NODE_ENV === 'production') {
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
+}
+
+else {
+    console.log("I am running and env is Development")
 }
 
 const PORT = process.env.PORT || 5000;
