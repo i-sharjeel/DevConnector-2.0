@@ -19,10 +19,10 @@ app.use(express.json({ extended: false }));
 
 // Defining Routes
 
-app.use(`${domainName}/api/users`, require("./routes/api/users"));
-app.use(`${domainName}/api/auth`, require("./routes/api/auth"));
-app.use(`${domainName}/api/profile`, require("./routes/api/profile"));
-app.use(`${domainName}/api/posts`, require("./routes/api/posts"));
+app.use(`${domainName}:${process.env.PORT}/api/users`, require("./routes/api/users"));
+app.use(`${domainName}:${process.env.PORT}/api/auth`, require("./routes/api/auth"));
+app.use(`${domainName}:${process.env.PORT}/api/profile`, require("./routes/api/profile"));
+app.use(`${domainName}:${process.env.PORT}/api/posts`, require("./routes/api/posts"));
 
 // Serve static assets in production
 
