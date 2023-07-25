@@ -6,8 +6,8 @@ const initialState = {
     loading: true,
     user: null
 }
-
-export default function (state = initialState, action) { // eslint-disable-next-line
+// eslint-disable-next-line
+export default function (state = initialState, action) {
     const { type, payload } = action;
     switch (type) {
         case USER_LOADED:
