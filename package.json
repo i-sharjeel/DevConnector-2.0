@@ -9,7 +9,7 @@
     "build": "SET NODE_ENV=production && NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "vercel-build": "npm install --prefix client && npm install --prefix DEVCONNECTOR-2.0 && npm run dev"
+    "vercel-build": "npm install && npm install --prefix client && npm run dev"
   },
   "author": "Muhammad Sharjeel",
   "license": "ISC",
