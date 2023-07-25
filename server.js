@@ -1,9 +1,13 @@
 const express = require("express");
 const connectDB = require("./config/db");
 require('dotenv').config();
-const config = require("config");
 const path = require("path");
 const app = express();
+let domainName = "";
+
+if (process.env.STATUS === "production") {
+    domainName = "https://dev-connector-2-0.vercel.app"
+}
 
 //Connect Database
 connectDB();
@@ -15,21 +19,18 @@ app.use(express.json({ extended: false }));
 
 // Defining Routes
 
-app.use("/api/users", require("./routes/api/users"));
-app.use("/api/auth", require("./routes/api/auth"));
-app.use("/api/profile", require("./routes/api/profile"));
-app.use("/api/posts", require("./routes/api/posts"));
+app.use(`${domainName}/api/users`, require("./routes/api/users"));
+app.use(`${domainName}/api/auth`, require("./routes/api/auth"));
+app.use(`${domainName}/api/profile`, require("./routes/api/profile"));
+app.use(`${domainName}/api/posts`, require("./routes/api/posts"));
 
 // Serve static assets in production
 
 // console.log('NODE_ENV: ' + config.util.getEnv('NODE_ENV'));
-console.log('process.env.STATUS: ' + process.env.STATUS);
+console.log('domainName: ' + domainName);
 
 if (process.env.STATUS == "production") {
     // set static folder
-
-    console.log("I am running and env is Production")
-
     app.use(express.static('client/build'));
 
     app.get("*", (req, res) => {
