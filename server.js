@@ -46,3 +46,5 @@ console.log("PORT: ", PORT)
 app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
 
 module.exports = app;
+
+// "vercel-build": "npm install && npm install --prefix client && npm run server && npm run build --prefix client"
